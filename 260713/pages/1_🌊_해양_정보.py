@@ -2,26 +2,27 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from pathlib import Path
-from PIL import Image
 
 st.set_page_config(page_title="해양 정보", layout="wide")
 
 st.title("🌊 대한민국 해양 정보")
 
-st.write("대한민국의 동해, 서해, 남해의 환경 정보를 확인할 수 있습니다.")
+st.write("동해, 서해, 남해의 해양환경과 대표 어종을 확인할 수 있습니다.")
 
 # ====================================================
-# 이미지 폴더 절대경로
+# 이미지 폴더
 # ====================================================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 IMAGE_DIR = BASE_DIR / "images"
+FISH_DIR = IMAGE_DIR / "fish"
 
 # ====================================================
 # 데이터
 # ====================================================
 
 sea_info = {
+
     "동해": {
         "image": IMAGE_DIR / "east_sea.png",
         "temperature": 18.2,
@@ -57,27 +58,17 @@ sea_info = {
         "silicate": 1.2,
         "fish": ["방어", "참돔", "고등어", "멸치", "전갱이"]
     }
+
 }
-
-# ====================================================
-# 대한민국 지도
-# ====================================================
-
-st.subheader("🗺 대한민국")
-
-map_path = IMAGE_DIR / "korea_map.png"
-
-if map_path.exists():
-    st.image(map_path, use_container_width=True)
-else:
-    st.warning(f"지도 파일을 찾을 수 없습니다.\n{map_path}")
 
 # ====================================================
 # 바다 선택
 # ====================================================
 
+st.subheader("🌊 바다 선택")
+
 sea = st.radio(
-    "바다를 선택하세요.",
+    "",
     ["동해", "서해", "남해"],
     horizontal=True
 )
@@ -86,10 +77,10 @@ data = sea_info[sea]
 
 st.divider()
 
-col1, col2 = st.columns([1, 1])
+col1, col2 = st.columns([1,1])
 
 # ====================================================
-# 사진
+# 바다 사진
 # ====================================================
 
 with col1:
@@ -99,10 +90,10 @@ with col1:
     if data["image"].exists():
         st.image(data["image"], use_container_width=True)
     else:
-        st.warning(f"이미지 없음\n{data['image']}")
+        st.warning("바다 사진이 없습니다.")
 
 # ====================================================
-# 환경정보
+# 환경 정보
 # ====================================================
 
 with col2:
@@ -120,16 +111,25 @@ with col2:
 st.divider()
 
 # ====================================================
-# 대표 어류
+# 대표 어종
 # ====================================================
 
-st.subheader("🐟 대표 어류")
+st.subheader("🐟 주로 서식하는 어종")
 
 cols = st.columns(len(data["fish"]))
 
 for i, fish in enumerate(data["fish"]):
+
     with cols[i]:
-        st.success(fish)
+
+        st.markdown(f"### {fish}")
+
+        fish_image = FISH_DIR / f"{fish}.png"
+
+        if fish_image.exists():
+            st.image(fish_image, use_container_width=True)
+        else:
+            st.info("이미지 준비 중")
 
 st.divider()
 
@@ -138,25 +138,29 @@ st.divider()
 # ====================================================
 
 graph_df = pd.DataFrame({
+
     "항목": [
         "수온",
         "염분",
         "pH",
         "용존산소"
     ],
+
     "값": [
         data["temperature"],
         data["salinity"],
         data["ph"],
         data["oxygen"]
     ]
+
 })
 
 fig = px.bar(
     graph_df,
     x="항목",
     y="값",
-    title=f"{sea} 환경 정보"
+    title=f"{sea} 환경 정보",
+    color="값"
 )
 
 st.plotly_chart(fig, use_container_width=True)
