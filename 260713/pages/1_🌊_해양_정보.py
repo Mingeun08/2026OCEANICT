@@ -23,7 +23,7 @@ IMAGE_DIR = BASE_DIR / "images"
 
 sea_info = {
     "동해": {
-        "image": IMAGE_DIR / "east_sea.jpg",
+        "image": IMAGE_DIR / "east_sea.png",
         "temperature": 18.2,
         "salinity": 34.3,
         "ph": 8.10,
