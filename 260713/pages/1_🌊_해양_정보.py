@@ -25,37 +25,37 @@ sea_info = {
 
     "동해": {
         "image": IMAGE_DIR / "east_sea.png",
-        "temperature": 18.2,
-        "salinity": 34.3,
-        "ph": 8.10,
-        "oxygen": 7.8,
-        "nitrate": 0.13,
-        "phosphate": 0.04,
-        "silicate": 1.8,
+        "temperature": 16.8,
+        "salinity": 34.1,
+        "ph": 8.12,
+        "oxygen": 8.2,
+        "nitrate": 1.8,
+        "phosphate": 0.15,
+        "silicate": 4.5,
         "fish": ["명태", "대구", "오징어", "연어", "꽁치"]
     },
 
     "서해": {
         "image": IMAGE_DIR / "west_sea.png",
-        "temperature": 20.8,
-        "salinity": 31.5,
-        "ph": 8.00,
-        "oxygen": 6.5,
-        "nitrate": 0.16,
-        "phosphate": 0.06,
-        "silicate": 2.3,
+        "temperature": 14.5,
+        "salinity": 31.8,
+        "ph": 8.03,
+        "oxygen": 7.4,
+        "nitrate": 6.5,
+        "phosphate": 0.45,
+        "silicate": 12.5,
         "fish": ["조기", "꽃게", "낙지", "농어", "우럭"]
     },
 
     "남해": {
         "image": IMAGE_DIR / "south_sea.png",
-        "temperature": 22.4,
-        "salinity": 33.8,
-        "ph": 8.15,
-        "oxygen": 6.9,
-        "nitrate": 0.09,
-        "phosphate": 0.03,
-        "silicate": 1.2,
+        "temperature": 18.2,
+        "salinity": 33.5,
+        "ph": 8.09,
+        "oxygen": 7.6,
+        "nitrate": 4.2,
+        "phosphate": 0.3,
+        "silicate": 7.8,
         "fish": ["방어", "참돔", "고등어", "멸치", "전갱이"]
     }
 
