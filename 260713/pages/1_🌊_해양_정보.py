@@ -35,7 +35,7 @@ sea_info = {
     },
 
     "서해": {
-        "image": IMAGE_DIR / "west_sea.jpg",
+        "image": IMAGE_DIR / "west_sea.png",
         "temperature": 20.8,
         "salinity": 31.5,
         "ph": 8.00,
@@ -47,7 +47,7 @@ sea_info = {
     },
 
     "남해": {
-        "image": IMAGE_DIR / "south_sea.jpg",
+        "image": IMAGE_DIR / "south_sea.png",
         "temperature": 22.4,
         "salinity": 33.8,
         "ph": 8.15,
